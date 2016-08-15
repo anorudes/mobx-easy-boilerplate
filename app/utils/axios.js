@@ -6,13 +6,13 @@ export default axios.create({
   baseURL: '/',
 
   transformRequest: [data => {
-    app.isFetching = true;
+    app.isFetching = true; // Show Loading component
 
     return data;
   }],
 
   transformResponse: [data => {
-    app.isFetching = false;
+    app.isFetching = false; // Hide Loading component
 
     return JSON.parse(data);
   }],

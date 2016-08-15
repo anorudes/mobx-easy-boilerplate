@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { observer } from 'mobx-react';
 
-import { stores } from 'stores';
+import { app, posts } from 'stores';
 import Header from 'components/Modules/Header';
 import Loading from 'components/Modules/Loading';
 
@@ -29,8 +29,8 @@ export default class Root extends Component {
     // Put mobx stores in context
 
     return {
-      app: stores.app,
-      posts: stores.posts,
+      app,
+      posts,
     };
   }
 
@@ -38,7 +38,7 @@ export default class Root extends Component {
     return (
       <section>
         {
-          stores.app.isFetching && <Loading />
+          app.isFetching && <Loading />
         }
         <Helmet
           title="posts"
