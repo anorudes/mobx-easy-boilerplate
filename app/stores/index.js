@@ -1,5 +1,7 @@
-import PostsStore from './posts';
+import posts from './posts';
+import app from './app';
 
 export const stores = {
-  posts: new PostsStore(),
+  posts,
+  app,
 };

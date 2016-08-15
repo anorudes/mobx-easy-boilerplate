@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { observer } from 'mobx-react';
 
-import PostsStore from 'stores/posts';
-
 /* component styles */
 import s from './styles.css';
 

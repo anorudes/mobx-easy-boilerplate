@@ -1,14 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
+import { observer } from 'mobx-react';
 
 import { stores } from 'stores';
 import Header from 'components/Modules/Header';
+import Loading from 'components/Modules/Loading';
 
 /* global styles for app */
 if (__CLIENT__) {
   require('./styles/app.css');
 }
 
+@observer
 export default class Root extends Component {
   static propTypes = {
     location: PropTypes.object,
@@ -19,12 +22,14 @@ export default class Root extends Component {
 
   static childContextTypes = {
     posts: React.PropTypes.object,
+    app: React.PropTypes.object,
   }
 
   getChildContext() {
     // Put mobx stores in context
 
     return {
+      app: stores.app,
       posts: stores.posts,
     };
   }
@@ -32,6 +37,9 @@ export default class Root extends Component {
   render() {
     return (
       <section>
+        {
+          stores.app.isFetching && <Loading />
+        }
         <Helmet
           title="posts"
         />

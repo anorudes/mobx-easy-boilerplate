@@ -1,15 +1,22 @@
 import { observable, action } from 'mobx';
 import axios from 'axios';
 
-export default class Posts {
+import app from './app.js';
+
+class Posts {
   @observable items = [];
 
   // Get items from api
   @action getPosts() {
+    app.isFetching = true; // for Loading component
+
     axios
       .get('/api/posts')
       .then(res => {
-        this.items = res.data.posts;
+        setTimeout(() => { // delay for example
+          this.items = res.data.posts;
+          app.isFetching = false;
+        }, 1000);
       });
   }
 
@@ -21,3 +28,5 @@ export default class Posts {
     });
   }
 }
+
+export default new Posts();
