@@ -1,8 +1,5 @@
 Mobx Easy Universal Boilerplate
 =========================
-
-Redux Easy Universal Boilerplate
-=========================
 [![bitHound Overall Score](https://www.bithound.io/github/anorudes/mobx-easy-boilerplate/badges/score.svg)](https://www.bithound.io/github/anorudes/mobx-easy-boilerplate)
 
 ---
