@@ -3,8 +3,8 @@ import Helmet from 'react-helmet';
 import { observer } from 'mobx-react';
 
 import { app, posts } from 'stores';
-import Header from 'components/Modules/Header';
-import Loading from 'components/Modules/Loading';
+import Header from 'components/Header';
+import Loading from 'components/Loading';
 
 /* global styles for app */
 if (__CLIENT__) {

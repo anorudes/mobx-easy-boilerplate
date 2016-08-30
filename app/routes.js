@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import Root from './components/Root';
-import Posts from './components/Pages/Posts';
-import About from './components/Pages/About';
+import Root from './containers/Root';
+import Posts from './containers/Posts';
+import About from './components/About';
 
 export default (
   <Route path="/" component={Root}>
