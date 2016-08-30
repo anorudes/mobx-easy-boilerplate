@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import Helmet from 'react-helmet';
 import { observer } from 'mobx-react';
 import R from 'ramda';
 
@@ -50,16 +49,12 @@ export default class Root extends Component {
   render() {
     return (
       <section>
-        {
-          app.isLoading && <Loading />
-        }
-        <Helmet
-          title="posts"
-        />
         <Header />
         {
-          !app.isLoading && this.props.children &&
-            React.cloneElement(this.props.children, this.props)
+          app.isLoading
+            ? <Loading />
+            : this.props.children &&
+                React.cloneElement(this.props.children, this.props)
         }
       </section>
     );
