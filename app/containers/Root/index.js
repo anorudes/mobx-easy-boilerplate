@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { observer } from 'mobx-react';
+import R from 'ramda';
 
 import { app, posts } from 'stores';
 import Header from 'components/Header';
@@ -34,18 +35,30 @@ export default class Root extends Component {
     };
   }
 
+  componentDidMount() {
+    app.hideLoading();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { location } = this.props;
+
+    if (app.isLoading === true && !R.equals(location, prevProps.location)) {
+      app.hideLoading();
+    }
+  }
+
   render() {
     return (
       <section>
         {
-          app.isFetching && <Loading />
+          app.isLoading && <Loading />
         }
         <Helmet
           title="posts"
         />
         <Header />
         {
-          this.props.children &&
+          !app.isLoading && this.props.children &&
             React.cloneElement(this.props.children, this.props)
         }
       </section>

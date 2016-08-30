@@ -8,7 +8,7 @@ import s from './styles.css';
 @observer
 export default class Posts extends Component {
   static contextTypes = {
-    posts: React.PropTypes.object, // get mobx posts store from context (see root component)
+    posts: PropTypes.object, // get mobx posts store from context (see root component)
   };
 
   componentDidMount() {
@@ -27,6 +27,10 @@ export default class Posts extends Component {
           title="posts"
         />
         <h1>Posts page</h1>
+        {
+          posts.isFetching &&
+            <span>Loading...</span>
+        }
         <div className={s.list}>
           { // Render posts
             posts.items.map(post =>
@@ -35,7 +39,6 @@ export default class Posts extends Component {
               </div>
             )
           }
-
           <button onClick={() => posts.addItem()}>add item</button>
         </div>
       </section>

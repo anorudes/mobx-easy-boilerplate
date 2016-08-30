@@ -1,17 +1,19 @@
 import { observable, action } from 'mobx';
-import axios from 'utils/axios';
+import axios from 'axios';
 
 class Posts {
   @observable items = [];
+  @observable isFetching = false;
 
   // Get items from api
   @action getPosts() {
+    this.isFetching = true;
+
     axios
       .get('/api/posts')
       .then(res => {
-        setTimeout(() => { // delay for example
-          this.items = res.data.posts;
-        }, 1000);
+        this.items = res.data.posts;
+        this.isFetching = false;
       });
   }
 

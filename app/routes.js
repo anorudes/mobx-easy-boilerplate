@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
+import asyncComponent from './utils/asyncComponent'; /* for async page, show loading component */
+
 import Root from './containers/Root';
 import Posts from './containers/Posts';
 import About from './components/About';
@@ -8,6 +10,10 @@ import About from './components/About';
 export default (
   <Route path="/" component={Root}>
     <IndexRoute component={Posts} />
+    { /* async component */}
+    <Route path="/async-example" getComponent={(location, callback) =>
+        asyncComponent(require.ensure([], require => callback('', require('./components/AsyncExample').default), 'async-example'))
+    } />
 
     <Route path="/posts" component={Posts} />
     <Route path="/about" component={About} />

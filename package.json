@@ -22,6 +22,7 @@
     "react",
     "reactjs",
     "babel6",
+    "mobx",
     "boilerplate",
     "hot",
     "reload",

@@ -1,7 +1,15 @@
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 
 class App {
-  @observable isFetching = false; // for Loading component
+  @observable isLoading = false; // for Loading component
+
+  @action showLoading() {
+    this.isLoading = true;
+  }
+
+  @action hideLoading() {
+    this.isLoading = false;
+  }
 }
 
 export default new App();
