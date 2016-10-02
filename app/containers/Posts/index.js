@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { observer } from 'mobx-react';
-import connect from 'mobx/connect';
+import connect from 'stores/connect';
 
 /* component styles */
 import s from './styles.css';

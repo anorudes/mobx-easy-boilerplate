@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { observer } from 'mobx-react';
 import R from 'ramda';
 
-import connect from 'mobx/connect';
+import connect from 'stores/connect';
 import Header from 'components/Header';
 import Loading from 'components/Loading';
 

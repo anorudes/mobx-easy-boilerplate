@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { posts, app } from './stores';
+import { posts, app } from '../';
 
 function connect(DecoratedComponent) {
   class Connect extends Component {
