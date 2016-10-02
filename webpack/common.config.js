@@ -38,7 +38,8 @@ const common = {
     alias: {
       components: path.join(__dirname, '../app/components/'),
       containers: path.join(__dirname, '../app/containers/'),
-      stores: path.join(__dirname, '../app/stores/'),
+      'mobx/connect': path.join(__dirname, '../app/mobx/connect'),
+      stores: path.join(__dirname, '../app/mobx/stores/'),
       constants: path.join(__dirname, '../app/constants/'),
       decorators: path.join(__dirname, '../app/decorators/'),
       utils: path.join(__dirname, '../app/utils/'),

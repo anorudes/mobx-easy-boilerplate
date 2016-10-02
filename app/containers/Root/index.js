@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { observer } from 'mobx-react';
 import R from 'ramda';
 
-import { app, posts } from 'stores';
+import connect from 'mobx/connect';
 import Header from 'components/Header';
 import Loading from 'components/Loading';
 
@@ -11,35 +11,23 @@ if (__CLIENT__) {
   require('./styles/app.css');
 }
 
-@observer
-export default class Root extends Component {
+class Root extends Component {
   static propTypes = {
     location: PropTypes.object,
     children: PropTypes.object,
     params: PropTypes.object,
     history: PropTypes.object,
+    app: PropTypes.object,
   };
 
-  static childContextTypes = {
-    posts: React.PropTypes.object,
-    app: React.PropTypes.object,
-  }
-
-  getChildContext() {
-    // Put mobx stores in context
-
-    return {
-      app,
-      posts,
-    };
-  }
-
   componentDidMount() {
+    const { app } = this.props;
+
     app.hideLoading();
   }
 
   componentDidUpdate(prevProps) {
-    const { location } = this.props;
+    const { app, location } = this.props;
 
     if (app.isLoading === true && !R.equals(location, prevProps.location)) {
       app.hideLoading();
@@ -47,6 +35,8 @@ export default class Root extends Component {
   }
 
   render() {
+    const { app } = this.props;
+
     return (
       <section>
         <Header />
@@ -60,3 +50,5 @@ export default class Root extends Component {
     );
   }
 }
+
+export default connect(observer(Root));

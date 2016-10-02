@@ -1,25 +1,25 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { observer } from 'mobx-react';
+import connect from 'mobx/connect';
 
 /* component styles */
 import s from './styles.css';
 
-@observer
-export default class Posts extends Component {
-  static contextTypes = {
-    posts: PropTypes.object, // get mobx posts store from context (see root component)
+class Posts extends Component {
+  static propTypes = {
+    posts: PropTypes.object,
   };
 
   componentDidMount() {
-    const { posts } = this.context;
+    const { posts } = this.props;
 
-    // Get posts from api, see /app/stores/posts
+    // Get posts from api, see /app/mobx/stores/posts
     posts.getPosts();
   }
 
   render() {
-    const { posts } = this.context;
+    const { posts } = this.props;
 
     return (
       <section className={s.root}>
@@ -46,3 +46,4 @@ export default class Posts extends Component {
   }
 }
 
+export default connect(observer(Posts));
